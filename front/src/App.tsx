@@ -1,5 +1,4 @@
 import "./App.scss";
-import { useState } from "react";
 import { AppShell, Burger, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {
@@ -8,33 +7,30 @@ import {
   FaUser,
   FaTrafficLight
 } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import DarkModeButton from "./components/DarkModeButton/DarkModeButton";
+import Router from "./Router";
 
 const data = [
-  { link: '', label: 'Home', icon: FaHome },
-  { link: '', label: 'Veiculos', icon: FaCar },
-  { link: '', label: 'Motoristas', icon: FaUser },
-  { link: '', label: 'Portaria', icon: FaTrafficLight },
+  { link: '/', label: 'Home', icon: FaHome },
+  { link: '/veiculos', label: 'Veiculos', icon: FaCar },
+  { link: '/motoristas', label: 'Motoristas', icon: FaUser },
+  { link: '/portaria', label: 'Portaria', icon: FaTrafficLight },
 ];
 
 function App() {
   const [opened, { toggle: toggle }] = useDisclosure(true);
-  const [active, setActive] = useState('Home');
 
   const links = data.map((item) => (
-    <a
-      className="link"
-      data-active={item.label === active || undefined}
-      href={item.link}
+    <NavLink
+      className={({isActive}) => isActive ? "active" : "link"}
+      to={item.link}
       key={item.label}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(item.label);
-      }}
+      
     >
       <item.icon className="linkIcon"/>
       <span>{item.label}</span>
-    </a>
+    </NavLink>
   ));
 
   return (
@@ -57,7 +53,9 @@ function App() {
       <AppShell.Navbar p="md" className="navbar">
         {links}
       </AppShell.Navbar>
-      <AppShell.Main>Main</AppShell.Main>
+      <AppShell.Main>
+        <Router />
+      </AppShell.Main>
     </AppShell>
   );
 }

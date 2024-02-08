@@ -9,3 +9,55 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Setor {
+  id                      Int         @id @default(autoincrement())
+  nome                    String
+  veiculos                Veiculo[]
+  motoristas              Motorista[]
+}
+model Veiculo {
+  id                      Int         @id @default(autoincrement())
+  placa                   String
+  marca                   String
+  modelo                  String
+  status                  String
+  chassi                  String
+  renavam                 String
+  km                      Int
+  ano                     Int
+  cor                     String
+  combustivel             String
+  categoriaCNH            String
+  dataLicenciamento       DateTime
+  numPatrimonio           Int
+  setor                   Setor      @relation(fields: [setorId], references: [id])
+  setorId                 Int
+  movimentos               Movimento[]
+}
+
+model Motorista {
+  id                      Int         @id @default(autoincrement())
+  nome                    String
+  rg                      String
+  cpf                     String
+  numCNH                  String
+  validadeCNH             DateTime
+  categoriaCNH            String
+  setor                   Setor      @relation(fields: [setorId], references: [id])
+  setorId                 Int
+  movimentos               Movimento[]
+}
+
+model Movimento {
+  id                      Int         @id @default(autoincrement())
+  dataSaida               DateTime
+  dataChegada             DateTime
+  kmSaida                 Int
+  kmChegada               Int
+  destino                 String
+  veiculo                 Veiculo     @relation(fields: [veiculoId], references: [id])
+  veiculoId               Int
+  motorista               Motorista   @relation(fields: [motoristaId], references: [id])
+  motoristaId             Int
+}
