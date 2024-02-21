@@ -21,6 +21,7 @@ model Veiculo {
   placa                   String
   marca                   String
   modelo                  String
+  tipo                    String
   status                  String
   chassi                  String
   renavam                 String

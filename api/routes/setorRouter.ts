@@ -38,7 +38,7 @@ setorRouter.post('/', async (req, res) => {
     const novoSetor: Setor = await prisma.setor.create({
         data: setor,
     });
-    return res.json(novoSetor);
+    return res.status(201).json(novoSetor);
 });
 
 // PUT /setor/:id
@@ -72,3 +72,5 @@ setorRouter.delete('/:id', async (req, res) => {
     }
     return res.json(setorDeletado);
 });
+
+export default setorRouter;

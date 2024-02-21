@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    gap: 1rem;
+}
+
+.card {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: light-dark(var(--mantine-color-gray-3),var(--mantine-color-gray-7));
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    flex: 1;
+}
+.placa {
+    display: flex;
+    border-bottom: 1px solid light-dark(var(--mantine-color-gray-7),var(--mantine-color-gray-3));
+    padding-bottom: 0.5rem;
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid light-dark(var(--mantine-color-gray-7),var(--mantine-color-gray-3));
+        border-radius: 50%;
+        padding: 0.75rem;
+    }
+    h1 {
+        margin-left: 1rem;
+    }
+}
+.statusBar {
+    padding-top: 0.5rem;
+    display: flex;
+    font-weight: 500;
+    justify-content: space-evenly;
+}
+.status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid light-dark(var(--mantine-color-gray-7),var(--mantine-color-gray-3));
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    font-weight: 500;
+    width: fit-content;
+}

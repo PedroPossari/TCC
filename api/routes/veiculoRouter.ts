@@ -9,6 +9,7 @@ type Veiculo = {
     placa: string;
     marca: string;
     modelo: string;
+    tipo: string;
     status: string;
     chassi: string;
     renavam: string;
@@ -51,23 +52,23 @@ veiculoRouter.post("/", async (req, res) => {
     const novoVeiculo: Veiculo = await prisma.veiculo.create({
         data: veiculo,
     });
-    return res.json(novoVeiculo);
+    return res.status(201).json(novoVeiculo);
 });
 
 // PUT /veiculo/:id
 // Atualiza um veículo
 veiculoRouter.put("/:id", async (req, res) => {
     const { id } = req.params;
+    if(!await prisma.veiculo.findUnique({ where: { id: Number(id) } })) {
+        return res.status(404).json({ error: "Veículo não encontrado" });
+    }
     const veiculo: Veiculo = req.body;
-    const veiculoAtualizado: Veiculo | null = await prisma.veiculo.update({
+    const veiculoAtualizado: Veiculo = await prisma.veiculo.update({
         where: {
             id: Number(id),
         },
         data: veiculo,
     });
-    if (!veiculoAtualizado) {
-        return res.status(404).json({ error: "Veículo não encontrado" });
-    }
     return res.json(veiculoAtualizado);
 });
 
