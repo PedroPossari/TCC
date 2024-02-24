@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home/Home";
-import VeiculoList from "./components/Veiculos/VeiculoList/VeiculoList";
-import VeiculoShow from "./components/Veiculos/VeiculoShow/VeiculoShow";
+import Home from "./components/Home";
+import VeiculoList from "./components/Veiculos/VeiculoList";
+import VeiculoShow from "./components/Veiculos/VeiculoShow";
 
 function Router() {
     return (

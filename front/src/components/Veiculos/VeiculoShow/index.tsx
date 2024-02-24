@@ -1,8 +1,6 @@
 import { Tabs } from '@mantine/core';
 import { FaInfo, FaWrench } from 'react-icons/fa';
-import VeiculoInfo from "../VeiculoInfo/VeiculoInfo";
-
-import './VeiculoShow.scss';
+import VeiculoInfo from "../VeiculoInfo";
 
 function VeiculoShow() {
     return(

@@ -3,7 +3,7 @@ import { MantineProvider } from "@mantine/core";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import '@mantine/core/styles.css';
-import './index.scss';
+import './index.module.scss';
 import App from './App';
 
 const queryClient = new QueryClient();

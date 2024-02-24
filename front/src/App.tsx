@@ -1,4 +1,4 @@
-import "./App.scss";
+import styles from "./App.module.scss";
 import { AppShell, Burger, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {
@@ -8,7 +8,7 @@ import {
   FaTrafficLight
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import DarkModeButton from "./components/DarkModeButton/DarkModeButton";
+import DarkModeButton from "./components/DarkModeButton";
 import Router from "./Router";
 
 const data = [
@@ -23,12 +23,12 @@ function App() {
 
   const links = data.map((item) => (
     <NavLink
-      className={({isActive}) => isActive ? "active" : "link"}
+      className={({isActive}) => isActive ? styles.active : styles.link}
       to={item.link}
       key={item.label}
       
     >
-      <item.icon className="linkIcon"/>
+      <item.icon className={styles.linkIcon}/>
       <span>{item.label}</span>
     </NavLink>
   ));
@@ -50,7 +50,7 @@ function App() {
           <DarkModeButton />
         </Group>
       </AppShell.Header>
-      <AppShell.Navbar p="md" className="navbar">
+      <AppShell.Navbar p="md" className={styles.navbar}>
         {links}
       </AppShell.Navbar>
       <AppShell.Main>
