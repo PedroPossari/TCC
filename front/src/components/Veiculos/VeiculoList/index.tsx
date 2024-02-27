@@ -156,10 +156,10 @@ function VeiculoList() {
           {rows.length > 0 ? (
             rows
           ) : (
-            <Table.Tr>
-              <Table.Td colSpan={Object.keys(veiculos[0]).length}>
-                <Text fw={500} ta="center">
-                  Nothing found
+            <Table.Tr> 
+              <Table.Td colSpan={5}>
+                <Text fw={500} ta="center" >
+                  Nenhum veículo encontrado
                 </Text>
               </Table.Td>
             </Table.Tr>
