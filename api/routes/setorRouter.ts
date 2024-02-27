@@ -1,13 +1,10 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { Setor } from '@prisma/client';
 
 const setorRouter = Router();
 const prisma = new PrismaClient();
 
-type Setor = {
-    id: number;
-    nome: string;
-};
 
 // GET /setor
 // Retorna todos os setores

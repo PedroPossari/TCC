@@ -1,32 +1,19 @@
 import { Router } from "express";
 import { PrismaClient } from "@prisma/client";
+import { Veiculo } from "@prisma/client";
 
 const veiculoRouter = Router();
 const prisma = new PrismaClient();
 
-type Veiculo = {
-    id: number;
-    placa: string;
-    marca: string;
-    modelo: string;
-    tipo: string;
-    status: string;
-    chassi: string;
-    renavam: string;
-    km: number;
-    ano: number;
-    cor: string;
-    combustivel: string;
-    categoriaCNH: string;
-    dataLicenciamento: Date;
-    numPatrimonio: number;
-    setorId: number;
-};
 
 // GET /veiculo
 // Retorna todos os veículos
 veiculoRouter.get("/", async (req, res) => {
-    const veiculos: Veiculo[] = await prisma.veiculo.findMany();
+    const veiculos: Veiculo[] = await prisma.veiculo.findMany({
+        include: {
+            setor: true,
+        },
+    });
     return res.json(veiculos);
 });
 
@@ -35,6 +22,9 @@ veiculoRouter.get("/", async (req, res) => {
 veiculoRouter.get("/:id", async (req, res) => {
     const { id } = req.params;
     const veiculo: Veiculo | null = await prisma.veiculo.findUnique({
+        include: {
+            setor: true,
+        },
         where: {
             id: Number(id),
         },
@@ -64,6 +54,9 @@ veiculoRouter.put("/:id", async (req, res) => {
     }
     const veiculo: Veiculo = req.body;
     const veiculoAtualizado: Veiculo = await prisma.veiculo.update({
+        include: {
+            setor: true,
+        },
         where: {
             id: Number(id),
         },
@@ -77,6 +70,9 @@ veiculoRouter.put("/:id", async (req, res) => {
 veiculoRouter.delete("/:id", async (req, res) => {
     const { id } = req.params;
     const veiculoDeletado: Veiculo | null = await prisma.veiculo.delete({
+        include: {
+            setor: true,
+        },
         where: {
             id: Number(id),
         },

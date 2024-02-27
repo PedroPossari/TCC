@@ -2,55 +2,43 @@ import { useState } from 'react';
 import {
   Table,
   ScrollArea,
-  UnstyledButton,
-  Group,
   Text,
-  Center,
   TextInput,
   rem,
   keys,
 } from '@mantine/core';
-import { TbSelector, TbChevronDown, TbChevronUp, TbSearch } from 'react-icons/tb'
-import styles from "./styles.module.scss";
+import Th from '../../TableHead';
+import { TbSearch } from 'react-icons/tb'
+import Setor from '../../../types/Setor';
+import { useQuery } from 'react-query';
+import { listVeiculos } from "../../../services/Veiculos/VeiculosService";
+import z from 'zod';
 
+const rowSchema = z.array(
+  z.object({
+    id: z.number(),
+    placa: z.string(),
+    marca: z.string(),
+    modelo: z.string(),
+    setor: z.object({
+      id: z.number(),
+      nome: z.string(),
+    }),
+  })
+);
 
 interface RowData {
-  id: string;
+  id: number;
   placa: string;
   marca: string;
   modelo: string;
-  setor: string;
-}
-
-interface ThProps {
-  children: React.ReactNode;
-  reversed: boolean;
-  sorted: boolean;
-  onSort(): void;
-}
-
-function Th({ children, reversed, sorted, onSort }: ThProps) {
-  const Icon = sorted ? (reversed ? TbChevronUp : TbChevronDown) : TbSelector;
-  return (
-    <Table.Th className={styles.th}>
-      <UnstyledButton onClick={onSort} className={styles.control}>
-        <Group justify="space-between">
-          <Text fw={500} fz="sm">
-            {children}
-          </Text>
-          <Center className={styles.icon}>
-            <Icon style={{ width: rem(16), height: rem(16) }} />
-          </Center>
-        </Group>
-      </UnstyledButton>
-    </Table.Th>
-  );
+  setor: Setor;
 }
 
 function filterData(data: RowData[], search: string) {
   const query = search.toLowerCase().trim();
   return data.filter((item) =>
-    keys(data[0]).some((key) => item[key].toLowerCase().includes(query))
+    keys(data[0]).some((key) => key == "setor" ? item[key].nome.toLowerCase().includes(query) : key == "id" ? item[key].toString().toLowerCase().includes(query) : item[key].toLowerCase().includes(query))
   );
 }
 
@@ -67,78 +55,64 @@ function sortData(
   return filterData(
     [...data].sort((a, b) => {
       if (payload.reversed) {
-        return b[sortBy].localeCompare(a[sortBy]);
+        if(sortBy == "setor")
+          return b[sortBy].nome.localeCompare(a[sortBy].nome);
+        else if(sortBy == "id")
+          return b[sortBy].toString().localeCompare(a[sortBy].toString());
+          return b[sortBy].localeCompare(a[sortBy]);
       }
-
-      return a[sortBy].localeCompare(b[sortBy]);
+      if(sortBy == "setor")
+        return a[sortBy].nome.localeCompare(b[sortBy].nome);
+      else if(sortBy == "id")
+        return a[sortBy].toString().localeCompare(b[sortBy].toString());
+        return a[sortBy].localeCompare(b[sortBy]);
     }),
     payload.search
   );
 }
 
-const data = [
-  {
-    id: '1',
-    placa: 'ABC-1234',
-    marca: 'Chevrolet',
-    modelo: 'Onix',
-    setor: 'Gabinete'
-  },
-  {
-    id: '2',
-    placa: 'DEF-5678',
-    marca: 'Fiat',
-    modelo: 'Uno',
-    setor: 'Meio Ambiente'
-  },
-  {
-    id: '3',
-    placa: 'GHI-9101',
-    marca: 'Volkswagen',
-    modelo: 'Gol',
-    setor: 'Saúde'
-  }
-];
-
-export default function VeiculoList() {
+function VeiculoList() {
+  const { data, isLoading, error } = useQuery<RowData[]>('listVeiculos', listVeiculos);
   const [search, setSearch] = useState('');
-  const [sortedData, setSortedData] = useState(data);
   const [sortBy, setSortBy] = useState<keyof RowData | null>(null);
   const [reverseSortDirection, setReverseSortDirection] = useState(false);
+  let veiculos = sortData(rowSchema.parse(data ?? []), { sortBy, reversed: reverseSortDirection, search });
 
   const setSorting = (field: keyof RowData) => {
     const reversed = field === sortBy ? !reverseSortDirection : false;
     setReverseSortDirection(reversed);
     setSortBy(field);
-    setSortedData(sortData(data, { sortBy: field, reversed, search }));
+    veiculos = sortData(veiculos, { sortBy: field, reversed, search });
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
     setSearch(value);
-    setSortedData(sortData(data, { sortBy, reversed: reverseSortDirection, search: value }));
+    veiculos = sortData(veiculos, { sortBy, reversed: reverseSortDirection, search: value });
   };
 
-  const rows = sortedData.map((row) => (
+  const rows = veiculos.map((row: RowData) => (
     <Table.Tr key={row.id}>
       <Table.Td>{row.id}</Table.Td>
       <Table.Td>{row.placa}</Table.Td>
       <Table.Td>{row.marca}</Table.Td>
       <Table.Td>{row.modelo}</Table.Td>
-      <Table.Td>{row.setor}</Table.Td>
+      <Table.Td>{row.setor.nome}</Table.Td>
     </Table.Tr>
   ));
 
+  if (isLoading) return <h1>Carregando...</h1>
+  if (error) return <h1>Erro ao carregar</h1>
   return (
     <ScrollArea>
       <TextInput
-        placeholder="Search by any field"
+        placeholder="Buscar por campo"
         mb="md"
         leftSection={<TbSearch style={{ width: rem(16), height: rem(16) }} />}
         value={search}
         onChange={handleSearchChange}
       />
-      <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} layout="fixed">
+      <Table horizontalSpacing="md" verticalSpacing="xs" layout="fixed">
         <Table.Tbody>
           <Table.Tr>
             <Th
@@ -183,7 +157,7 @@ export default function VeiculoList() {
             rows
           ) : (
             <Table.Tr>
-              <Table.Td colSpan={Object.keys(data[0]).length}>
+              <Table.Td colSpan={Object.keys(veiculos[0]).length}>
                 <Text fw={500} ta="center">
                   Nothing found
                 </Text>
@@ -195,3 +169,5 @@ export default function VeiculoList() {
     </ScrollArea>
   );
 }
+
+export default VeiculoList;
