@@ -1,0 +1,35 @@
+.veiculos{
+    height: 40rem;
+    width: 20rem;
+  
+    
+}
+
+
+.veiculosNavbar {
+flex-direction: row;
+display: flex;
+    ul {
+      text-align: center;
+      list-style-type: none;
+      list-style-type: none;
+      margin: 0;
+      padding: 1rem;
+      li {
+        display: inline;    
+        font-size: 17px;
+        a {
+          color: #f2f2f2;
+          text-decoration: none;
+          padding: 1rem;
+          &:hover {
+            background-color: #111;
+          }
+        }
+      }
+    }
+  }
+
+      
+    
+  
