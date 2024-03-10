@@ -1,6 +1,6 @@
 import { UnstyledButton, Group, Center, Text, Table, rem } from '@mantine/core';
 import { TbChevronDown, TbChevronUp, TbSelector } from 'react-icons/tb';
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface ThProps {
     children: React.ReactNode;
