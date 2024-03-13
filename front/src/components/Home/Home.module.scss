@@ -1,35 +1,61 @@
-.veiculos{
-    height: 40rem;
-    width: 20rem;
-  
-    
+.homeAll {
+  padding: 0;
+  margin: 0;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  //background-color: red;
 }
 
+.itensNav {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 
-.veiculosNavbar {
-flex-direction: row;
-display: flex;
-    ul {
-      text-align: center;
-      list-style-type: none;
-      list-style-type: none;
-      margin: 0;
-      padding: 1rem;
-      li {
-        display: inline;    
-        font-size: 17px;
-        a {
-          color: #f2f2f2;
-          text-decoration: none;
-          padding: 1rem;
-          &:hover {
-            background-color: #111;
-          }
-        }
-      }
-    }
+  .avisos {
+    width: 13.5rem;
+    height: 3.2rem;
+    text-align: center;
+    color: black;
+    background-color: grey;
+    border-radius: 0.7rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.veiculos {
+  position: fixed;
+  z-index: 555;
+  height: 40rem;
+  width: 25rem;
+  background-color: gray;
+
+  h2 {
+    text-align: center;
+    border-radius: 1rem;
   }
 
-      
-    
-  
+  //background-color: red;
+}
+
+.veiculosNavbar {
+  flex-direction: row;
+
+  ul {
+    list-style-type: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem;
+    li {
+      margin: 0.86rem;
+      display: inline;
+      font-size: 17px;
+      color: #f2f2f2;
+      //&:hover {
+      //background-color: #111;
+      // }
+    }
+  }
+}

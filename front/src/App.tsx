@@ -1,21 +1,16 @@
 import styles from "./App.module.scss";
-import { AppShell, Burger, Group } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import {
-  FaHome,
-  FaCar,
-  FaUser,
-  FaTrafficLight
-} from "react-icons/fa";
+import { AppShell, Burger, Group } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { FaHome, FaCar, FaUser, FaTrafficLight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import DarkModeButton from "./components/DarkModeButton";
 import Router from "./Router";
 
 const data = [
-  { link: '/', label: 'Home', icon: FaHome },
-  { link: '/veiculos', label: 'Veiculos', icon: FaCar },
-  { link: '/motoristas', label: 'Motoristas', icon: FaUser },
-  { link: '/portaria', label: 'Portaria', icon: FaTrafficLight },
+  { link: "/", label: "Home", icon: FaHome },
+  { link: "/veiculos", label: "Veiculos", icon: FaCar },
+  { link: "/motoristas", label: "Motoristas", icon: FaUser },
+  { link: "/portaria", label: "Portaria", icon: FaTrafficLight },
 ];
 
 function App() {
@@ -23,12 +18,11 @@ function App() {
 
   const links = data.map((item) => (
     <NavLink
-      className={({isActive}) => isActive ? styles.active : styles.link}
+      className={({ isActive }) => (isActive ? styles.active : styles.link)}
       to={item.link}
       key={item.label}
-      
     >
-      <item.icon className={styles.linkIcon}/>
+      <item.icon className={styles.linkIcon} />
       <span>{item.label}</span>
     </NavLink>
   ));
@@ -38,7 +32,7 @@ function App() {
       header={{ height: 60 }}
       navbar={{
         width: 300,
-        breakpoint: 'sm',
+        breakpoint: "sm",
         collapsed: { mobile: !opened, desktop: !opened },
       }}
       padding="md"
