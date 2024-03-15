@@ -32,7 +32,7 @@ setorRouter.post('/', async (req, res) => {
         in: 'body',                                             
         required: true,                     
         schema: { 
-            $nome: 'Nome do Setor'
+            $nome: 'Nome do setor'
         }                        
     } 
     */
@@ -53,7 +53,7 @@ setorRouter.put('/:id', async (req, res) => {
         in: 'body',                                            
         required: true,                     
         schema: { 
-            $nome: 'Nome do Setor'
+            $nome: 'Nome do setor'
         }                        
     } 
     */

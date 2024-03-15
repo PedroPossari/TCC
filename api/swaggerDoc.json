@@ -23,6 +23,9 @@
   "paths": {
     "/veiculos/": {
       "get": {
+        "tags": [
+          "Veículos"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -31,7 +34,99 @@
         }
       },
       "post": {
+        "tags": [
+          "Veículos"
+        ],
         "description": "",
+        "parameters": [
+          {
+            "name": "Veiculo",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "placa": {
+                  "type": "string",
+                  "example": "Placa do veículo"
+                },
+                "marca": {
+                  "type": "string",
+                  "example": "Marca do veículo"
+                },
+                "modelo": {
+                  "type": "string",
+                  "example": "Modelo do veículo"
+                },
+                "tipo": {
+                  "type": "string",
+                  "example": "Tipo do veículo"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "Status do veículo"
+                },
+                "chassi": {
+                  "type": "string",
+                  "example": "Chassi do veículo"
+                },
+                "renavam": {
+                  "type": "string",
+                  "example": "Renavam do veículo"
+                },
+                "km": {
+                  "type": "number",
+                  "example": 0
+                },
+                "ano": {
+                  "type": "number",
+                  "example": 0
+                },
+                "cor": {
+                  "type": "string",
+                  "example": "Cor do veículo"
+                },
+                "combustivel": {
+                  "type": "string",
+                  "example": "Combustível do veículo"
+                },
+                "categoriaCNH": {
+                  "type": "string",
+                  "example": "Categoria de CNH para dirigir o veículo"
+                },
+                "dataLicenciamento": {
+                  "type": "string",
+                  "example": "Data do ultimo licenciamento do veículo"
+                },
+                "numPatrimonio": {
+                  "type": "number",
+                  "example": 0
+                },
+                "setorId": {
+                  "type": "number",
+                  "example": 0
+                }
+              },
+              "required": [
+                "placa",
+                "marca",
+                "modelo",
+                "tipo",
+                "status",
+                "chassi",
+                "renavam",
+                "km",
+                "ano",
+                "cor",
+                "combustivel",
+                "categoriaCNH",
+                "dataLicenciamento",
+                "numPatrimonio",
+                "setorId"
+              ]
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -41,6 +136,9 @@
     },
     "/veiculos/{id}": {
       "get": {
+        "tags": [
+          "Veículos"
+        ],
         "description": "",
         "parameters": [
           {
@@ -60,6 +158,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Veículos"
+        ],
         "description": "",
         "parameters": [
           {
@@ -67,6 +168,93 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "Veiculo",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "placa": {
+                  "type": "string",
+                  "example": "Placa do veículo"
+                },
+                "marca": {
+                  "type": "string",
+                  "example": "Marca do veículo"
+                },
+                "modelo": {
+                  "type": "string",
+                  "example": "Modelo do veículo"
+                },
+                "tipo": {
+                  "type": "string",
+                  "example": "Tipo do veículo"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "Status do veículo"
+                },
+                "chassi": {
+                  "type": "string",
+                  "example": "Chassi do veículo"
+                },
+                "renavam": {
+                  "type": "string",
+                  "example": "Renavam do veículo"
+                },
+                "km": {
+                  "type": "number",
+                  "example": 0
+                },
+                "ano": {
+                  "type": "number",
+                  "example": 0
+                },
+                "cor": {
+                  "type": "string",
+                  "example": "Cor do veículo"
+                },
+                "combustivel": {
+                  "type": "string",
+                  "example": "Combustível do veículo"
+                },
+                "categoriaCNH": {
+                  "type": "string",
+                  "example": "Categoria de CNH para dirigir o veículo"
+                },
+                "dataLicenciamento": {
+                  "type": "string",
+                  "example": "Data do ultimo licenciamento do veículo"
+                },
+                "numPatrimonio": {
+                  "type": "number",
+                  "example": 0
+                },
+                "setorId": {
+                  "type": "number",
+                  "example": 0
+                }
+              },
+              "required": [
+                "placa",
+                "marca",
+                "modelo",
+                "tipo",
+                "status",
+                "chassi",
+                "renavam",
+                "km",
+                "ano",
+                "cor",
+                "combustivel",
+                "categoriaCNH",
+                "dataLicenciamento",
+                "numPatrimonio",
+                "setorId"
+              ]
+            }
           }
         ],
         "responses": {
@@ -79,6 +267,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Veículos"
+        ],
         "description": "",
         "parameters": [
           {
@@ -125,7 +316,7 @@
               "properties": {
                 "nome": {
                   "type": "string",
-                  "example": "Nome do Setor"
+                  "example": "Nome do setor"
                 }
               },
               "required": [
@@ -185,7 +376,7 @@
               "properties": {
                 "nome": {
                   "type": "string",
-                  "example": "Nome do Setor"
+                  "example": "Nome do setor"
                 }
               },
               "required": [
