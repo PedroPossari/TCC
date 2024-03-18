@@ -7,16 +7,6 @@
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "tags": [
-    {
-      "name": "Veículos",
-      "description": "Controle de Veículos"
-    },
-    {
-      "name": "Setores",
-      "description": "Controle de Setores"
-    }
-  ],
   "schemes": [
     "http"
   ],
@@ -280,8 +270,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found"
@@ -408,8 +398,196 @@
           }
         ],
         "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/motoristas/": {
+      "get": {
+        "tags": [
+          "Motoristas"
+        ],
+        "description": "",
+        "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Motoristas"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "Motorista",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome do motorista"
+                },
+                "rg": {
+                  "type": "string",
+                  "example": "RG do motorista"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "CPF do motorista"
+                },
+                "numCNH": {
+                  "type": "string",
+                  "example": "Número da CNH do motorista"
+                },
+                "validadeCNH": {
+                  "type": "string",
+                  "example": "Validade da CNH do motorista"
+                },
+                "categoriaCNH": {
+                  "type": "string",
+                  "example": "Categoria da CNH do motorista"
+                },
+                "setorId": {
+                  "type": "number",
+                  "example": 0
+                }
+              },
+              "required": [
+                "nome",
+                "rg",
+                "cpf",
+                "numCNH",
+                "validadeCNH",
+                "categoriaCNH",
+                "setorId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/motoristas/{id}": {
+      "get": {
+        "tags": [
+          "Motoristas"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Motoristas"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Motorista",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome do motorista"
+                },
+                "rg": {
+                  "type": "string",
+                  "example": "RG do motorista"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "CPF do motorista"
+                },
+                "numCNH": {
+                  "type": "string",
+                  "example": "Número da CNH do motorista"
+                },
+                "validadeCNH": {
+                  "type": "string",
+                  "example": "Validade da CNH do motorista"
+                },
+                "categoriaCNH": {
+                  "type": "string",
+                  "example": "Categoria da CNH do motorista"
+                },
+                "setorId": {
+                  "type": "number",
+                  "example": 0
+                }
+              },
+              "required": [
+                "nome",
+                "rg",
+                "cpf",
+                "numCNH",
+                "validadeCNH",
+                "categoriaCNH",
+                "setorId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Motoristas"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found"

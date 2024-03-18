@@ -7,16 +7,6 @@ const doc = {
         title: 'API Gestor de Frotas',
         description: 'API para controle de frotas de veículos',
       },
-    tags: [                   // by default: empty Array
-        {
-            name: 'Veículos',
-            description: 'Controle de Veículos'
-        },
-        {
-            name: 'Setores',
-            description: 'Controle de Setores'
-        }
-    ],
       host: 'localhost:3000'
 }
 

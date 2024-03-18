@@ -57,9 +57,25 @@ veiculoRouter.post("/", async (req, res) => {
         }                        
     } 
     */
-    const veiculo: Veiculo = req.body;
+    const { placa, marca, modelo, tipo, status, chassi, renavam, km, ano, cor, combustivel, categoriaCNH, dataLicenciamento, numPatrimonio, setorId } = req.body;
     const novoVeiculo: Veiculo = await prisma.veiculo.create({
-        data: veiculo,
+        data: {
+            placa: placa,
+            marca: marca,
+            modelo: modelo,
+            tipo: tipo,
+            status: status,
+            chassi: chassi,
+            renavam: renavam,
+            km: km,
+            ano: ano,
+            cor: cor,
+            combustivel: combustivel,
+            categoriaCNH: categoriaCNH,
+            dataLicenciamento: dataLicenciamento,
+            numPatrimonio: numPatrimonio,
+            setorId: setorId
+        }
     });
     return res.status(201).json(novoVeiculo);
 });
@@ -98,7 +114,7 @@ veiculoRouter.put("/:id", async (req, res) => {
     if (!veiculoExiste) {
         return res.status(404).json({ error: "Veículo não encontrado" });
     }
-    const veiculo: Veiculo = req.body;
+    const { placa, marca, modelo, tipo, status, chassi, renavam, km, ano, cor, combustivel, categoriaCNH, dataLicenciamento, numPatrimonio, setorId } = req.body;
     const veiculoAtualizado: Veiculo = await prisma.veiculo.update({
         include: {
             setor: true,
@@ -106,7 +122,23 @@ veiculoRouter.put("/:id", async (req, res) => {
         where: {
             id: Number(id),
         },
-        data: veiculo,
+        data: {
+            placa: placa,
+            marca: marca,
+            modelo: modelo,
+            tipo: tipo,
+            status: status,
+            chassi: chassi,
+            renavam: renavam,
+            km: km,
+            ano: ano,
+            cor: cor,
+            combustivel: combustivel,
+            categoriaCNH: categoriaCNH,
+            dataLicenciamento: dataLicenciamento,
+            numPatrimonio: numPatrimonio,
+            setorId: setorId
+        }
     });
     return res.json(veiculoAtualizado);
 });
@@ -114,18 +146,20 @@ veiculoRouter.put("/:id", async (req, res) => {
 veiculoRouter.delete("/:id", async (req, res) => {
     // #swagger.tags = ['Veículos']
     const { id } = req.params;
-    const veiculoDeletado: Veiculo | null = await prisma.veiculo.delete({
-        include: {
-            setor: true,
-        },
+    const veiculoExiste: Veiculo | null = await prisma.veiculo.findUnique({
         where: {
             id: Number(id),
         },
     });
-    if (!veiculoDeletado) {
+    if (!veiculoExiste) {
         return res.status(404).json({ error: "Veículo não encontrado" });
     }
-    return res.json(veiculoDeletado);
+    await prisma.veiculo.delete({
+        where: {
+            id: Number(id),
+        },
+    });
+    return res.sendStatus(204);
 });
 
 export default veiculoRouter;

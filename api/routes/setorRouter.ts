@@ -36,11 +36,10 @@ setorRouter.post('/', async (req, res) => {
         }                        
     } 
     */
-    const { id, nome }: Setor = req.body;
+    const { nome }: Setor = req.body;
     const novoSetor: Setor = await prisma.setor.create({
         data: {
-            id,
-            nome
+            nome: nome,
         }
     });
     return res.status(201).json(novoSetor);
@@ -59,32 +58,42 @@ setorRouter.put('/:id', async (req, res) => {
     */
     const { id } = req.params;
     const { nome }: Setor = req.body;
-    const setorAtualizado: Setor | null = await prisma.setor.update({
+    const setorExiste = await prisma.setor.findUnique({
+        where: {
+            id: Number(id)
+        }
+    });
+    if (!setorExiste) {
+        return res.status(404).json({ error: 'Setor não encontrado' });
+    }
+    const setorAtualizado: Setor = await prisma.setor.update({
         where: {
             id: Number(id),
         },
         data: {
-            nome
-        }
+            nome: nome,
+        },
     });
-    if (!setorAtualizado) {
-        return res.status(404).json({ error: 'Setor não encontrado' });
-    }
     return res.json(setorAtualizado);
 });
 
 setorRouter.delete('/:id', async (req, res) => {
     // #swagger.tags = ['Setores']
     const { id } = req.params;
-    const setorDeletado: Setor | null = await prisma.setor.delete({
+    const setorExiste = await prisma.setor.findUnique({
+        where: {
+            id: Number(id)
+        }
+    });
+    if (!setorExiste) {
+        return res.status(404).json({ error: 'Setor não encontrado' });
+    }
+    await prisma.setor.delete({
         where: {
             id: Number(id),
         },
     });
-    if (!setorDeletado) {
-        return res.status(404).json({ error: 'Setor não encontrado' });
-    }
-    return res.json(setorDeletado);
+    return res.sendStatus(204);
 });
 
 export default setorRouter;
