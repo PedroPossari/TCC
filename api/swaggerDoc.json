@@ -1,0 +1,599 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Gestor de Frotas",
+    "description": "API para controle de frotas de veículos",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/veiculos/": {
+      "get": {
+        "tags": [
+          "Veículos"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Veículos"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "Veiculo",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "placa": {
+                  "type": "string",
+                  "example": "Placa do veículo"
+                },
+                "marca": {
+                  "type": "string",
+                  "example": "Marca do veículo"
+                },
+                "modelo": {
+                  "type": "string",
+                  "example": "Modelo do veículo"
+                },
+                "tipo": {
+                  "type": "string",
+                  "example": "Tipo do veículo"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "Status do veículo"
+                },
+                "chassi": {
+                  "type": "string",
+                  "example": "Chassi do veículo"
+                },
+                "renavam": {
+                  "type": "string",
+                  "example": "Renavam do veículo"
+                },
+                "km": {
+                  "type": "number",
+                  "example": 0
+                },
+                "ano": {
+                  "type": "number",
+                  "example": 0
+                },
+                "cor": {
+                  "type": "string",
+                  "example": "Cor do veículo"
+                },
+                "combustivel": {
+                  "type": "string",
+                  "example": "Combustível do veículo"
+                },
+                "categoriaCNH": {
+                  "type": "string",
+                  "example": "Categoria de CNH para dirigir o veículo"
+                },
+                "dataLicenciamento": {
+                  "type": "string",
+                  "example": "Data do ultimo licenciamento do veículo"
+                },
+                "numPatrimonio": {
+                  "type": "number",
+                  "example": 0
+                },
+                "setorId": {
+                  "type": "number",
+                  "example": 0
+                }
+              },
+              "required": [
+                "placa",
+                "marca",
+                "modelo",
+                "tipo",
+                "status",
+                "chassi",
+                "renavam",
+                "km",
+                "ano",
+                "cor",
+                "combustivel",
+                "categoriaCNH",
+                "dataLicenciamento",
+                "numPatrimonio",
+                "setorId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/veiculos/{id}": {
+      "get": {
+        "tags": [
+          "Veículos"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Veículos"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Veiculo",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "placa": {
+                  "type": "string",
+                  "example": "Placa do veículo"
+                },
+                "marca": {
+                  "type": "string",
+                  "example": "Marca do veículo"
+                },
+                "modelo": {
+                  "type": "string",
+                  "example": "Modelo do veículo"
+                },
+                "tipo": {
+                  "type": "string",
+                  "example": "Tipo do veículo"
+                },
+                "status": {
+                  "type": "string",
+                  "example": "Status do veículo"
+                },
+                "chassi": {
+                  "type": "string",
+                  "example": "Chassi do veículo"
+                },
+                "renavam": {
+                  "type": "string",
+                  "example": "Renavam do veículo"
+                },
+                "km": {
+                  "type": "number",
+                  "example": 0
+                },
+                "ano": {
+                  "type": "number",
+                  "example": 0
+                },
+                "cor": {
+                  "type": "string",
+                  "example": "Cor do veículo"
+                },
+                "combustivel": {
+                  "type": "string",
+                  "example": "Combustível do veículo"
+                },
+                "categoriaCNH": {
+                  "type": "string",
+                  "example": "Categoria de CNH para dirigir o veículo"
+                },
+                "dataLicenciamento": {
+                  "type": "string",
+                  "example": "Data do ultimo licenciamento do veículo"
+                },
+                "numPatrimonio": {
+                  "type": "number",
+                  "example": 0
+                },
+                "setorId": {
+                  "type": "number",
+                  "example": 0
+                }
+              },
+              "required": [
+                "placa",
+                "marca",
+                "modelo",
+                "tipo",
+                "status",
+                "chassi",
+                "renavam",
+                "km",
+                "ano",
+                "cor",
+                "combustivel",
+                "categoriaCNH",
+                "dataLicenciamento",
+                "numPatrimonio",
+                "setorId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Veículos"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/setores/": {
+      "get": {
+        "tags": [
+          "Setores"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Setores"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "Setor",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome do setor"
+                }
+              },
+              "required": [
+                "nome"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/setores/{id}": {
+      "get": {
+        "tags": [
+          "Setores"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Setores"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Setor",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome do setor"
+                }
+              },
+              "required": [
+                "nome"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Setores"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/motoristas/": {
+      "get": {
+        "tags": [
+          "Motoristas"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Motoristas"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "Motorista",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome do motorista"
+                },
+                "rg": {
+                  "type": "string",
+                  "example": "RG do motorista"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "CPF do motorista"
+                },
+                "numCNH": {
+                  "type": "string",
+                  "example": "Número da CNH do motorista"
+                },
+                "validadeCNH": {
+                  "type": "string",
+                  "example": "Validade da CNH do motorista"
+                },
+                "categoriaCNH": {
+                  "type": "string",
+                  "example": "Categoria da CNH do motorista"
+                },
+                "setorId": {
+                  "type": "number",
+                  "example": 0
+                }
+              },
+              "required": [
+                "nome",
+                "rg",
+                "cpf",
+                "numCNH",
+                "validadeCNH",
+                "categoriaCNH",
+                "setorId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/motoristas/{id}": {
+      "get": {
+        "tags": [
+          "Motoristas"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Motoristas"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Motorista",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome do motorista"
+                },
+                "rg": {
+                  "type": "string",
+                  "example": "RG do motorista"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "CPF do motorista"
+                },
+                "numCNH": {
+                  "type": "string",
+                  "example": "Número da CNH do motorista"
+                },
+                "validadeCNH": {
+                  "type": "string",
+                  "example": "Validade da CNH do motorista"
+                },
+                "categoriaCNH": {
+                  "type": "string",
+                  "example": "Categoria da CNH do motorista"
+                },
+                "setorId": {
+                  "type": "number",
+                  "example": 0
+                }
+              },
+              "required": [
+                "nome",
+                "rg",
+                "cpf",
+                "numCNH",
+                "validadeCNH",
+                "categoriaCNH",
+                "setorId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Motoristas"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  }
+}

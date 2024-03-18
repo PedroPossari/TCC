@@ -1,5 +1,5 @@
 import { ActionIcon, useMantineColorScheme } from '@mantine/core';
-import { FaSun, FaMoon } from "react-icons/fa";
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 function DarkModeButton() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();

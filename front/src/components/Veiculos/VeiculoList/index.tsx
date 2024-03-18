@@ -11,8 +11,10 @@ import Th from '../../TableHead';
 import { TbSearch } from 'react-icons/tb'
 import Setor from '../../../types/Setor';
 import { useQuery } from 'react-query';
-import { listVeiculos } from "../../../services/Veiculos/VeiculosService";
+import { listVeiculos } from '../../../services/Veiculos/VeiculosService';
+import { useNavigate } from 'react-router-dom';
 import z from 'zod';
+import styles from './styles.module.scss';
 
 const rowSchema = z.array(
   z.object({
@@ -91,8 +93,10 @@ function VeiculoList() {
     veiculos = sortData(veiculos, { sortBy, reversed: reverseSortDirection, search: value });
   };
 
+  const navigate = useNavigate();
+
   const rows = veiculos.map((row: RowData) => (
-    <Table.Tr key={row.id}>
+    <Table.Tr key={row.id} onClick={() => navigate(`/veiculos/${row.id}`)} className={styles.tr}>
       <Table.Td>{row.id}</Table.Td>
       <Table.Td>{row.placa}</Table.Td>
       <Table.Td>{row.marca}</Table.Td>
